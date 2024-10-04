@@ -1,0 +1,43 @@
+button {
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.25s;
+    border: none;
+    border-radius: 29px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.small {
+    font-size: 16px;
+    padding: 10px 25px;
+}
+
+.big {
+    width: 40px;
+    height: 40px;
+    padding: 10px 12px 10px 12px;
+    border-radius: 8px;
+    background-color: inherit; 
+}
+
+
+.active-btn {
+    background-color: #FEE3E3;
+}
+
+.disable-btn {
+    background: none;
+    cursor: not-allowed
+}
+
+.active {
+    color: #C53030;
+}
+
+.disable {
+    color: #9DA6B4;
+}
+
+
+
