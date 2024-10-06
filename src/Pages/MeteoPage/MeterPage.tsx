@@ -1,10 +1,10 @@
-import { TableMeteo } from "@/components/TableMeteo";
+import { TableMeter } from "@/components/TableMeter";
 import styles from "./MeteoPage.module.scss";
 
-export const MeteoPage = () => {
+export const MeterPage = () => {
   return (
     <div className={styles["container"]}>
-      <TableMeteo />
+      <TableMeter />
     </div>
   );
 };

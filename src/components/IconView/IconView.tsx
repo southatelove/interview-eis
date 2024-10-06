@@ -9,7 +9,6 @@ export const IconView: React.FC<IconViewProps> = (props) => {
   switch (nameIcon[0]) {
     case "HotWaterAreaMeter":
       text = "ГВС";
-      console.log("гвс");
       break;
     case "ColdWaterAreaMeter":
       text = "ХВС";
@@ -23,8 +22,6 @@ export const IconView: React.FC<IconViewProps> = (props) => {
     default:
       text = "Не указан тип счетчика";
   }
-
-  console.log("text", text);
 
   return (
     <div className={styles["icon-container"]}>

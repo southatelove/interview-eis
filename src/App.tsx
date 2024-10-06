@@ -1,10 +1,10 @@
-import { MeteoPage } from "./Pages/MeteoPage";
+import { MeterPage } from "./Pages/MeteoPage";
 import "./styles/index.scss";
 
 const App = () => {
   return (
     <div className="app">
-      <MeteoPage />
+      <MeterPage />
     </div>
   );
 };
