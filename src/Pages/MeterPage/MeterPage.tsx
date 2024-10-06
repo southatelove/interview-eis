@@ -1,5 +1,5 @@
 import { TableMeter } from "@/components/TableMeter";
-import styles from "./MeteoPage.module.scss";
+import styles from "./MeterPage.module.scss";
 
 export const MeterPage = () => {
   return (
