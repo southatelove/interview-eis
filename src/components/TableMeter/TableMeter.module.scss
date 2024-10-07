@@ -6,10 +6,10 @@ table {
 
 tr {
     height: 52px;
-        display: table-row;
-            vertical-align: inherit;
-            unicode-bidi: isolate;
-            border-color: inherit;
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
 }
 
 th,
@@ -38,7 +38,7 @@ button {
 
 
 
-.loader{
+.loader {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -69,16 +69,17 @@ button {
     width: 100%;
     overflow: hidden;
     overflow-y: auto;
+    border-radius: 15px;
 }
 
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 4px;
 }
 
-::-webkit-scrollbar-thumb{
-   background-color: rgb(94, 102, 116);
-border-radius: 4px;
+::-webkit-scrollbar-thumb {
+    background-color: rgb(94, 102, 116);
+    border-radius: 4px;
 }
 
 
@@ -109,10 +110,10 @@ td:last-child {
     justify-content: flex-end;
 }
 
-.pagination >Button{
+.pagination>Button {
     background-color: var(--bg-white-color);
 }
 
-.pagination >Button:hover{
+.pagination>Button:hover {
     background-color: rgb(242, 245, 248);
 }

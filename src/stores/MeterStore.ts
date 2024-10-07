@@ -74,7 +74,7 @@ const MeterStore = types
 
     const changePage = (pageNumber: number) => {
       self.currentPage = pageNumber;
-      self.offset = pageNumber * self.limit ? pageNumber * self.limit : 1;
+      self.offset = pageNumber * self.limit ? pageNumber * self.limit + 1 : 1;
       fetchMeters();
     };
 

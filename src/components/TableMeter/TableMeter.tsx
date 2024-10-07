@@ -90,17 +90,17 @@ export const TableMeter: React.FC = observer(() => {
             <Button onClick={() => changePage(1)} size="small">
               2
             </Button>
-            <Button size="small" onClick={() => changePage(3)}>
+            <Button size="small" onClick={() => changePage(2)}>
               3
             </Button>
             <Button>...</Button>
-            <Button size="small" onClick={() => changePage(4)}>
+            <Button size="small" onClick={() => changePage(3)}>
               4
             </Button>
-            <Button size="small" onClick={() => changePage(5)}>
+            <Button size="small" onClick={() => changePage(4)}>
               5
             </Button>
-            <Button size="small" onClick={() => changePage(6)}>
+            <Button size="small" onClick={() => changePage(5)}>
               6
             </Button>
           </div>
