@@ -31,6 +31,14 @@ tbody tr:hover {
     background-color: var(--secondary-color)
 }
 
+.tbodyLoader{
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    height: 920px;
+}
+
 button {
     margin: 10px;
     padding: 5px 10px;
@@ -53,6 +61,19 @@ button {
     height: 32px;
     color: var(--secondary-text-color);
     background: var(--secondary-color);
+}
+
+thead,
+tfoot {
+    position: sticky;
+    top: 0;
+    background-color: #f2f2f2;
+    z-index: 1;
+}
+
+tfoot {
+    bottom: 0;
+    width: 100%;
 }
 
 .nums {
@@ -103,12 +124,23 @@ td:last-child {
     display: none;
 }
 
+
+
+
+.tfoot-block {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 48px;
+    background: var(--bg-white-color);
+}
+
 .pagination {
-    margin-top: 8px;
     display: flex;
     gap: 8px;
-    justify-content: flex-end;
 }
+
 
 .pagination>Button {
     background-color: var(--bg-white-color);
@@ -117,3 +149,4 @@ td:last-child {
 .pagination>Button:hover {
     background-color: rgb(242, 245, 248);
 }
+

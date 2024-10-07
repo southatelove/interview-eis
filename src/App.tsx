@@ -1,4 +1,4 @@
-import { MeterPage } from "./Pages/MeterPage/MeterPage";
+import { MeterPage } from "@/pages/MeterPage/index";
 import "./styles/index.scss";
 
 const App = () => {
