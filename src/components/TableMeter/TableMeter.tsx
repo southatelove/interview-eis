@@ -1,52 +1,41 @@
 import React from "react";
-import axios from "axios";
 
 import styles from "./TableMeter.module.scss";
 import cn from "classnames";
-
-import { BACKEND_URL, fetchAreas, fetchMeters } from "src/helpers/API";
+import dayjs from "dayjs";
 
 import { Header } from "@/components/Header";
 import { IconView } from "@/components/IconView";
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
 
-import { Meter } from "@/types/index";
+import { MeterStore } from "src/stores/MeterStore";
+import { observer } from "mobx-react";
 
-export const TableMeter = () => {
-  const [meters, setMeters] = React.useState<Meter[]>([]);
-  const [offset, setOffset] = React.useState(1);
-  const [loading, setLoading] = React.useState(true);
+const store = MeterStore.create();
 
-  const loadMeters = async () => {
-    setLoading(true);
-
-    const meterData = await fetchMeters(offset); // загрузка данных по offset
-    const areaIds = meterData.map((meter) => meter.area.id); // вытаскивание area.id для загрузки адреса
-    const areaAddresses = await fetchAreas(areaIds); // загрузка адреса
-
-    setMeters(
-      meterData.map((meter) => ({
-        ...meter,
-        areaAddress: areaAddresses[meter.area.id as unknown as number],
-      }))
-    );
-    setLoading(false);
-  };
+export const TableMeter: React.FC = observer(() => {
+  React.useEffect(() => {
+    store.fetchMeters();
+  }, []);
 
   React.useEffect(() => {
-    loadMeters();
-  }, [offset]);
+    store.toggleLoader();
+  }, [store.changePage]);
 
   const deleteMeter = async (meterId: string) => {
-    await axios.delete(`${BACKEND_URL}/meters/${meterId}/`);
-    loadMeters();
+    await store.removeMeter(meterId);
+    store.fetchMeters();
+  };
+
+  const changePage = (pageNumber: number) => {
+    store.changePage(pageNumber);
   };
 
   return (
     <div className={styles["container"]}>
       <Header />
-      {loading ? (
+      {store.isLoading ? (
         <div className={styles["loader"]}>
           <Loader />
         </div>
@@ -67,16 +56,14 @@ export const TableMeter = () => {
                 </tr>
               </thead>
               <tbody>
-                {meters.map((meter, index) => (
+                {store.meterInfo.map((meter, index) => (
                   <tr key={meter.id} className={cn(styles["table-row"])}>
-                    <td className={styles["nums"]}>{offset + index}</td>
+                    <td className={styles["nums"]}>{store.offset + index}</td>
                     <td>
-                      <IconView nameIcon={meter._type} />
+                      <IconView typeIcon={meter._type} />
                     </td>
                     <td>
-                      {new Date(meter.installation_date).toLocaleDateString(
-                        "ru-RU"
-                      )}
+                      {dayjs(meter.installation_date).format("DD/MM/YYYY")}
                     </td>
                     <td>{meter.is_automatic ? "Да" : "Нет"}</td>
                     <td>{meter.initial_values}</td>
@@ -97,23 +84,23 @@ export const TableMeter = () => {
           </div>
 
           <div className={styles["pagination"]}>
-            <Button size="small" onClick={() => setOffset(1)}>
+            <Button size="small" onClick={() => changePage(0)}>
               1
             </Button>
-            <Button onClick={() => setOffset(21)} size="small">
+            <Button onClick={() => changePage(1)} size="small">
               2
             </Button>
-            <Button size="small" onClick={() => setOffset(41)}>
+            <Button size="small" onClick={() => changePage(3)}>
               3
             </Button>
             <Button>...</Button>
-            <Button size="small" onClick={() => setOffset(61)}>
+            <Button size="small" onClick={() => changePage(4)}>
               4
             </Button>
-            <Button size="small" onClick={() => setOffset(81)}>
+            <Button size="small" onClick={() => changePage(5)}>
               5
             </Button>
-            <Button size="small" onClick={() => setOffset(101)}>
+            <Button size="small" onClick={() => changePage(6)}>
               6
             </Button>
           </div>
@@ -121,14 +108,4 @@ export const TableMeter = () => {
       )}
     </div>
   );
-};
-
-{
-  /* <button
-        onClick={() => setOffset((prev) => Math.max(prev - 20, 0))}
-        disabled={offset === 0}
-      >
-        Предыдущие
-      </button>
-      <button onClick={() => setOffset((prev) => prev + 20)}>Следующие</button> */
-}
+});

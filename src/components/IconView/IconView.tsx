@@ -2,11 +2,11 @@ import { IconViewProps } from "./IconView.props";
 import styles from "./IconView.module.scss";
 
 export const IconView: React.FC<IconViewProps> = (props) => {
-  const { nameIcon } = props;
+  const { typeIcon } = props;
 
   let text;
 
-  switch (nameIcon[0]) {
+  switch (typeIcon[0]) {
     case "HotWaterAreaMeter":
       text = "ГВС";
       break;
@@ -25,7 +25,7 @@ export const IconView: React.FC<IconViewProps> = (props) => {
 
   return (
     <div className={styles["icon-container"]}>
-      <img src={`${nameIcon[0]}.svg`}></img>
+      <img src={`${typeIcon[0]}.svg`}></img>
       <p>{text}</p>
     </div>
   );
