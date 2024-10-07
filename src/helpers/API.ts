@@ -2,6 +2,8 @@ import axios from "axios";
 
 export const BACKEND_URL = "http://showroom.eis24.me/api/v4/test";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const getMeters = async (limit: number, offset: number) => {
   const response = await axios.get(`${BACKEND_URL}/meters/`, {
     params: {

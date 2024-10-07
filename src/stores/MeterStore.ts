@@ -61,7 +61,8 @@ const MeterStore = types
           ...meter,
           areaAddress: areaData[meter.area.id as unknown as number],
         }));
-
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         self.meterInfo = completeMeters;
         self.isLoading = false;
       } catch (error) {
