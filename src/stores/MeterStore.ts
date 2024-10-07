@@ -31,9 +31,8 @@ const MeterStore = types
   })
   .actions((self) => {
     const fetchMeters = flow(function* () {
+      self.isLoading = true;
       try {
-        self.isLoading = true;
-
         // Получение всех данных
         const metersData: MeterData[] = yield getMeters(
           self.limit,
@@ -64,9 +63,9 @@ const MeterStore = types
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         self.meterInfo = completeMeters;
-        self.isLoading = false;
       } catch (error) {
         console.error(`${error} to fetch a data (Meter)`);
+      } finally {
         self.isLoading = false;
       }
     });
