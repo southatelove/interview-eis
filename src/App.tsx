@@ -1,12 +1,13 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { MeterPage } from "./pages/MeterPage/MeterPage";
+import { TableMeter } from "./components/TableMeter";
+
 import "./styles/index.scss";
 
 const App = () => {
   return (
     <div className="app">
-      <MeterPage />
+      <div className="container">
+        <TableMeter />
+      </div>
     </div>
   );
 };
