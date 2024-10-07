@@ -45,20 +45,9 @@ const MeterStore = types
         // Параллельное получение всех адресов с помощью Promise.all
         const metersAddreses: MeterDataAddreses[] = yield getAllAreas(areaIds);
 
-        // Чтобы убрать обертку в виде массива используем flatMap
-        const areaData = metersAddreses.flatMap((item) =>
-          Array.isArray(item) ? item : [item]
-        );
-
-        areaData.forEach((area) => {
-          areaData[
-            area.id
-          ] = `${area.house.address}, ${area.number}, ${area.str_number_full}`;
-        });
-
         const completeMeters = metersData.map((meter) => ({
           ...meter,
-          areaAddress: areaData[meter.area.id as unknown as number],
+          areaAddress: metersAddreses[meter.area.id as unknown as number],
         }));
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

@@ -64,7 +64,7 @@ export const TableMeter: React.FC = observer(() => {
                 <td>
                   <IconView typeIcon={meter._type} />
                 </td>
-                <td>{dayjs(meter.installation_date).format("DD/MM/YYYY")}</td>
+                <td>{dayjs(meter.installation_date).format("DD.MM.YYYY")}</td>
                 <td>{meter.is_automatic ? "Да" : "Нет"}</td>
                 <td>{meter.initial_values}</td>
                 <td>{meter.areaAddress}</td>

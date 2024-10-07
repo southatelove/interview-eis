@@ -1,10 +1,12 @@
-import { MeterPage } from "./pages/MeterPage";
+import { TableMeter } from "./components/TableMeter";
 import "./styles/index.scss";
 
 const App = () => {
   return (
     <div className="app">
-      <MeterPage />
+      <div className="container">
+        <TableMeter />
+      </div>
     </div>
   );
 };

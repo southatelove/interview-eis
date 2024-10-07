@@ -1,50 +1,80 @@
-# React + TypeScript + Vite
+# Тестовое задание на позицию Frontend-разработчик в ООО Единая Информационная Система ЖКХ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Техническое задание
 
-Currently, two official plugins are available:
+Создать приложение для отображения списка счётчиков горячей и холодной воды.
+Дизайн:
+https://www.figma.com/design/gxVXNv5MEY8RQ1KXRVvkUT/%D0%A2%D0%B5%D1%81
+%D1%82-(%D1%84%D1%80%D0%BE%D0%BD%D1%82)?node-id=0-1&t=QQ9ijj1biJPPjj7
+s-0
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Список счётчиков.
+   Счётчики получать запросом GET http://showroom.eis24.me/api/v4/test/meters/
+   Параметры limit=20 и offset (выводить по 20 на страницу).
 
-## Expanding the ESLint configuration
+   Данные должны выводиться на странице с внутренним скроллом
+   («шапка» фиксированная, табличка скроллится внутри).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Колонки:
 
-- Configure the top-level `parserOptions` property like this:
+1. Порядковый номер.
+2. Тип (ColdWaterAreaMeter — ХВС, HotWaterAreaMeter — ГВС).
+3. Дата установки в формате дд.мм.гггг.
+4. Автоматический ли он (is_automatic).
+5. Значение (initial_values).
+6. Адреc.
+7. Примечание (description).
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+   2. Адрес счётчика.
+      Адреса получать параллельным запросом
+      GET http://showroom.eis24.me/api/v4/test/areas/ с параметром списка айди id\_\_in.
+      Продумать оптимизацию, не запрашивать уже известные адреса.
+      Выводить улицу, дом, номер квартиры.
+
+   3. Удаление счётчика.
+      При наведении на строку должна появляться кнопка удаления, инициирующая
+      удаление счётчика (DELETE http://showroom.eis24.me/api/v4/test/meters/:meterId/).
+      На странице при этом всегда должно оставаться 20 элементов.
+
+Стек технологий:
+Использовать React, TypeScript, mobx-state-tree — обязательно,
+styled-components — по желанию.
+Конфиг Prettier
+trailingComma: "es5"
+tabWidth: 2
+semi: true
+singleQuote: true
+printWidth: 80
+Проект выложить на github.
+
+## Для запуска проекта используйте следующие команды
+
+```
+git clone https://github.com/southatelove/interview-eis.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+npm i
+```
+
+```
+npm run dev
+```
+
+## Стек:
+
+- **TypeScript**
+- **React**
+- **Mobx-state-tree**
+- **dayjs**
+- **axios**
+- **Vite**
+- **SCSS**
+- **Module.scss**
+- **ClassNames**
+
+## Итог
+
+![alt text](/public/interview-eis-res.jpg)
+
+## Прикрепленная ссылка может не работать из-за безопасности браузера, рекомендуется склонировать репозиторий через команды выше

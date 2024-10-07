@@ -27,6 +27,7 @@ export const getAreaById = async (id: string) => {
 export const getAllAreas = async (ids: string[]) => {
   const response = await Promise.all(ids.map((id) => getAreaById(id)));
 
+  // Чтобы убрать обертку в виде массива используем flatMap
   const areaData = response.flatMap((item) =>
     Array.isArray(item) ? item : [item]
   );
